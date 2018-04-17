@@ -24,14 +24,11 @@ public class Account implements Transactions {
 
 
     // MODIFIES : this, transactions
-    // PURPOSE : adds given amount to the accounts balance
+    // EFFECTS : adds given amount to the accounts balance
     public void deposit(double amount) throws AmountIsZeroORNegativeException {
-
         checkAmount(amount);
-
-        Transaction transaction = new Transaction(TransactionTypes.DEPOSIT, amount);
         balance += amount;
-        transactions.add(transaction);
+        transactions.add(new Transaction(TransactionTypes.DEPOSIT, amount));
 
     }
 
@@ -41,13 +38,9 @@ public class Account implements Transactions {
     // MODIFIES : this, transactions
     // EFFECTS : withdraw given amount from the accounts balance
     public void withdraw(double amount) throws NotEnoughMoneyException, AmountIsZeroORNegativeException {
-        Transaction transaction = new Transaction(TransactionTypes.WITHDRAW, amount);
-
-        checkAmount(amount);
         checkBalance(amount);
-
         balance -= amount;
-        transactions.add(transaction);
+        transactions.add(new Transaction(TransactionTypes.WITHDRAW, amount));
 
 
 
